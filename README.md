@@ -1,4 +1,4 @@
-![StudySqueeze Logo](./images/logo1.png)
+![StudySqueeze Logo](frontend/images/logo1.png)
 
 ## Overview
 
@@ -73,8 +73,8 @@ _Supports PDF, DOCX, PPTX_
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/studysqueeze.git
-cd studysqueeze
+git clone https://github.com/agamyaaa14/StudySqueeze.git
+cd StudySqueeze
 ```
 
 ### 2. Backend Setup
@@ -97,9 +97,10 @@ uvicorn main:app --reload
 ```
 
 ### 3. Frontend Setup
+Start a new terminal along with the backend.
 
 ```bash
-cd ../frontend
+cd frontend
 npm install
 npm run dev
 ```
