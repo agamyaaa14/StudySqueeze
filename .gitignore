@@ -7,6 +7,8 @@ __pycache__/
 dist/
 build/
 venv/
+.bolt/
+.ebextensions/
 .env
 *.env
 *.sqlite3
