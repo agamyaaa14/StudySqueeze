@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudySqueeze - Summarize and Simplify Study Material</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="./images/logo4-nobg.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Splash Screen -->
+    <div id="splashScreen" class="splash-screen">
+        <div class="splash-content">
+            <div class="logo-container">
+                <img src="./images/logo3.png" alt="StudySqueeze Logo" class="splash-logo">
+            </div>
+            <button id="getStartedBtn" class="get-started-btn">Get Started</button>
+        </div>
+    </div>
+
+    <!-- Main App Interface -->
+    <div id="mainApp" class="main-app hidden">
+        <div class="app-logo-container">
+            <img src="./images/logo2.png" alt="StudySqueeze Logo" class="app-logo">
+        </div>
+        <div id="mode-selection">
+            <div class="mode-card" data-mode="quick-recap">
+                <img src="images/quick-recap.png" alt="Quick Recap">
+                <h3>Quick Recap</h3>
+                <p>Short bullet points for fast revision.</p>
+            </div>
+
+            <div class="mode-card" data-mode="analogy">
+                <img src="images/analogy.png" alt="Analogy Mode" width="100" height="100">
+                <h3>Analogy Mode</h3>
+                <p>Learn with relatable comparisons.</p>
+            </div>
+
+            <div class="mode-card" data-mode="exam-cram">
+                <img src="images/exam-cram.png" alt="Exam Cram">
+                <h3>Exam Cram Sheet</h3>
+                <p>Condensed facts & formulas.</p>
+            </div>
+
+            <div class="mode-card" data-mode="challenge">
+                <img src="images/challenge.png" alt="Challenge Mode">
+                <h3>Challenge Mode</h3>
+                <p>Quick summary + practice questions.</p>
+            </div>
+
+            <div class="mode-card" data-mode="mnemonics">
+                <img src="images/mnemonics.png" alt="Mnemonics">
+                <h3>Mnemonics Only</h3>
+                <p>Memory tricks and acronyms only.</p>
+            </div>
+        </div>
+
+        <div id="chosen-mode" style="display:none;">
+            <div class="chosen-card"></div>
+            <button id="change-mode">Change Mode</button>
+        </div>
+
+        <main class="chat-style-interface">
+            <div class="upload-section">
+                <div class="file-upload-area" id="fileUploadArea">
+                    <div class="upload-content">
+                        <p class="upload-text">Drop your file here or <span class="upload-link">browse</span></p>
+                        <p class="upload-formats">Supports PDF, DOCX, PPTX</p>
+                        <input type="file" id="fileInput" accept=".pdf,.docx,.pptx" hidden>
+                    </div>
+                </div>
+
+                <div class="selected-file" id="selectedFile" style="display: none;">
+                    <span class="file-name" id="fileName"></span>
+                    <button class="remove-file" id="removeFile">×</button>
+                </div>
+            </div>
+
+            <div class="input-response-section">
+                <div class="input-container">
+                    <textarea id="promptInput" maxlength="500" placeholder="Ask a question about your uploaded file..."
+                        rows="2"></textarea>
+                    <span id="charCount" class="char-count"></span>
+                    <button id="submitBtn" class="submit-btn" disabled>
+                        <span class="submit-text">&#8593;</span>
+                    </button>
+                </div>
+
+                <div id="responseArea" class="response-area hidden">
+                    <div class="message-container">
+                        <div class="message-header">
+                            <span class="message-title">StudySqueeze Response</span>
+                            <button id="copyBtn" class="copy-btn">Copy</button>
+                        </div>
+                        <div id="spinner" class="spinner hidden"></div>
+                        <div id="messageContent" class="message-content">
+                            <div id="chatArea" class="chat-area"></div>
+                            <!-- AI response appears here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <footer class="footer">
+        © 2025 StudySqueeze by Agamya David. All rights reserved.
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+</body>
+
+</html>

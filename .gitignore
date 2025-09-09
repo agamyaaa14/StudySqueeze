@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+venv/
+.env
+*.env
+*.sqlite3
+*.db
+.Python
+
+# FastAPI / Uvicorn logs
+*.log
+
+# VS Code settings
+.vscode/
+.history/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node (if you're using Vite or npm)
+node_modules/
+dist/
+*.log
+.npm/
+.yarn/
+.pnpm-debug.log
+
+# Frontend build (if any)
+frontend/dist/
+frontend/.vite/
+
+# Output files
+*.pdf
+*.docx
+*.pptx
+*.zip
+
+# Environment
+.env.local
+.env.*
+!.env.example
+
+# Git
+*.swp
+*.swo
