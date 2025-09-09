@@ -194,7 +194,6 @@ function displayError(errorMessage) {
 }
 
 // Form Submission
-const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:8000";
 async function handleSubmit() {
     if (submitBtn.disabled) return;
     const prompt = promptInput.value.trim();
@@ -212,7 +211,7 @@ async function handleSubmit() {
         formData.append('prompt', prompt);
         formData.append('mode', selectedMode || 'default');
 
-        const response = await fetch(`${apiUrl}/upload`, {
+        const response = await fetch("/upload", {
             method: "POST",
             body: formData,
         });
