@@ -1,114 +1,160 @@
 ![StudySqueeze Logo](frontend/images/logo1.png)
 
-## Overview
-
-**StudySqueeze** is an advanced AI-powered study assistant that transforms your study materials into concise, exam-ready resources. Upload your notes (PDF, DOCX, PPTX), select a study mode, and receive tailored outputs such as summaries, mnemonics, analogies, cheat sheets, and more—all in a sleek, chat-like interface.
+StudySqueeze is an advanced AI-powered study assistant that transforms bulky study materials into **exam-ready resources**. Simply upload your notes (PDF, DOCX, PPTX), select a study mode, and receive **tailored outputs** like summaries, mnemonics, analogies, and cheat sheets—all delivered in a sleek, chat-like interface.
 
 ---
 
 ## Key Features
 
-- **Multi-Mode Study Assistant:**  
-  Choose from Quick Recap, Analogy, Exam Cram, Challenge, or Mnemonics modes for personalized learning.
-
-- **Retrieval-Augmented Generation (RAG) Pipeline:**  
-  Combines semantic search (ChromaDB + Sentence Transformers) with LLM-powered responses (OpenRouter/Gemini) for context-aware answers.
-
-- **Robust File Upload:**  
-  Supports PDF, DOCX, and PPTX formats for instant content extraction.
-
-- **Modern Chat Interface:**  
-  Responsive UI with chat bubbles, green spinner loader, and copy-to-clipboard functionality.
-
-- **Smart Input:**  
-  Auto-expanding, character-limited prompt box with live feedback.
-
-- **Flexible Mode Selection:**  
-  Intuitive cards for switching between study modes, allowing students to study in the way that suits them best.
+-   **Multi-Format File Support** – Upload PDFs, DOCX, and PPTX files for instant parsing.
+-   **Retrieval-Augmented Generation (RAG)** – Combines **ChromaDB semantic search** with **LLM-powered responses** for context-aware answers.
+-   **Dynamic Study Modes** – Choose from various modes like Quick Recap, Analogy, Exam Cram, Challenge Me, and Mnemonics to match your learning style.
+-   **Modern Chat Interface** – Features an auto-expanding input box, a clean loading spinner, and a one-click copy-to-clipboard button.
+-   **Fast & Asynchronous** – Built with a FastAPI backend and a JS frontend for a lightweight and responsive user experience.
 
 ---
 
-## Technical Highlights
+## Tech Stack
 
-- **Frontend:**  
-  - Built with HTML5, CSS3 (custom chat bubbles, responsive design, Poppins font)
-  - JavaScript (Vite for fast development, Marked.js for Markdown rendering)
+-   **Frontend**:
+    -   HTML5, CSS3, Vanilla JavaScript
+    -   **Vite** for a blazing-fast development environment.
+    -   **Marked.js** for rendering rich Markdown in AI responses.
 
-- **Backend:**  
-  - FastAPI (Python) for high-performance APIs
-  - ChromaDB for vector storage and semantic retrieval
-  - Sentence Transformers for efficient text embeddings
-  - OpenRouter API for LLM integration (supports Gemini, Llama, etc.)
-  - PyMuPDF, python-docx, python-pptx for robust file parsing
+-   **Backend**:
+    -   **FastAPI** (Python) for high-performance, asynchronous API endpoints.
+    -   **ChromaDB** for efficient in-memory vector storage and retrieval.
+    -   **Sentence Transformers** (`all-MiniLM-L6-v2`) for creating text embeddings.
+    -   **OpenRouter API** to leverage powerful models like Llama 3 for generation.
+    -   **Document Parsers**: `PyMuPDF`, `python-docx`, `python-pptx`.
 
-- **RAG Pipeline:**  
-  - Document parsing → Chunking → Embedding → Semantic retrieval → Prompt construction → LLM response
-
-- **Security & Best Practices:**  
-  - Environment variable management for API keys
-  - CORS configuration
-  - Modular, production-ready Python code structure
 
 ---
 
-## Interface Examples
 
-**File Upload:**  
-`[ Drop your file here or browse ]`  
-_Supports PDF, DOCX, PPTX_
+## How It Works
 
-**Mode Selection:**  
-`[ Quick Recap ] [ Analogy ] [ Exam Cram ] [ Challenge ] [ Mnemonics ]`
+StudySqueeze uses a **Retrieval-Augmented Generation (RAG)** pipeline to provide answers that are grounded in your uploaded document. This ensures accuracy and relevance.
 
-**Chat Interface:**  
-- User prompt box (auto-expanding, character-limited)
-- Chat bubbles for Q&A
-- Green spinner while loading
-- Copy button for answers
+1.  **File Upload & Parsing**: When you upload a document (`PDF`, `DOCX`, `PPTX`), the backend extracts the raw text content.
+
+2.  **Text Chunking**: The extracted text is broken down into smaller, manageable chunks. This allows the system to find specific, relevant passages.
+
+3.  **Embedding & Indexing**: Each chunk is converted into a numerical representation (an embedding) using the `all-MiniLM-L6-v2` model. These embeddings are then stored in a **ChromaDB** vector database, creating a searchable index of your document's content.
+
+4.  **Semantic Search**: When you ask a question, your query is also converted into an embedding. The system then searches the ChromaDB database to find the text chunks with the most similar embeddings (i.e., the most semantically relevant context).
+
+5.  **LLM Augmentation**: The most relevant text chunks are combined with your original question and a system prompt, then sent to a powerful Large Language Model (LLM) via **OpenRouter**.
+
+6.  **Grounded Response**: The LLM generates a comprehensive answer based *only* on the context provided from your document, which is then streamed back to the user interface.
+
+
+---
+
+## Demo Video
+See StudySqueeze in action. The video below provides a complete walkthrough of the interface, from uploading a document to generating an AI-powered response using different study modes.
+![StudySqueeze Logo](frontend/images/logo4-nobg.png)
 
 ---
 
 ## Getting Started
 
-### 1. Clone the Repository
+Follow these steps to get StudySqueeze running on your local machine.
+
+### 1\. Clone the Repository
 
 ```bash
-git clone https://github.com/agamyaaa14/StudySqueeze.git
+git clone [https://github.com/agamyaaa14/StudySqueeze.git](https://github.com/agamyaaa14/StudySqueeze.git)
 cd StudySqueeze
 ```
 
-### 2. Backend Setup
+### 2\. Set Up the Backend
 
+The backend server handles file processing and AI interaction.
+
+Navigate to the backend directory
 ```bash
 cd backend
+```
+
+Create and activate a virtual environment
+```bash
+python -m venv venv
+venv\Scripts\activate
+```
+
+Install the required Python packages
+```bash
 pip install -r requirements.txt
 ```
 
-Create a `.env` file in the `backend` directory and add your OpenRouter API key:
-
+Create a .env file for your API key
+```bash
+OPENROUTER_API_KEY="your_openrouter_api_key_here"
 ```
-OPENROUTER_API_KEY=your_openrouter_key_here
-```
 
-Start the backend server:
+### 3\. Set Up the Frontend
+
+The frontend is a lightweight client built with Vite.
 
 ```bash
-uvicorn main:app --reload
-```
-
-### 3. Frontend Setup
-Start a new terminal along with the backend.
-
-```bash
+# Navigate to the frontend directory from the project root
 cd frontend
+
+# Install the necessary npm packages
 npm install
-npm run dev
 ```
 
-The frontend will be available at [http://localhost:5173](http://localhost:5173).
+### 4\. Run the Application
 
----
+You need to run both the backend and frontend servers in two separate terminals.
+
+  - **Terminal 1: Start the Backend (FastAPI)**
+
+    ```bash
+    # From the 'backend' directory
+    uvicorn main:app --reload
+    ```
+
+    The backend will be running at `http://12.0.0.1:8000`.
+
+  - **Terminal 2: Start the Frontend (Vite)**
+
+    ```bash
+    # From the 'frontend' directory
+    npm run dev
+    ```
+
+    The frontend will be available at `http://localhost:5173`. Open this URL in your browser to use the app.
+
+-----
+
+## Project Structure
+
+```
+StudySqueeze/
+│
+├── backend/
+│   ├── main.py              # FastAPI application logic and endpoints
+│   ├── utils.py             # File parsing, embeddings, and RAG logic
+│   ├── requirements.txt     # Python dependencies
+│   └── .env                 # API keys (ignored by git)
+│
+├── frontend/
+│   ├── index.html           # Main HTML file
+│   ├── script.js            # Frontend logic (API calls, DOM manipulation)
+│   ├── style.css            # Styling and layout
+│   ├── package.json         # Node.js dependencies
+│   └── vite.config.js       # Vite configuration
+│
+└── README.md
+```
+
+-----
 
 ## License
 
-MIT License © 2025 Agamya David
+This project is licensed under the **MIT License**. See the `LICENSE` file for details.
+© 2025 Agamya David
+
+```
