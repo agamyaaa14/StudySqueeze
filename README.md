@@ -53,6 +53,9 @@ StudySqueeze uses a **Retrieval-Augmented Generation (RAG)** pipeline to provide
 
 ## Demo Video
 See StudySqueeze in action. The video below provides a complete walkthrough of the interface, from uploading a document to generating an AI-powered response using different study modes.
+
+[![Watch the video](https://www.loom.com/share/79ff286b4f3d4973b10c95a8b08c424a?sid=1a467a43-ac39-4d4d-beb5-2c73c9dead1e)
+
 ![StudySqueeze Logo](frontend/images/logo4-nobg.png)
 
 ---
@@ -64,7 +67,7 @@ Follow these steps to get StudySqueeze running on your local machine.
 ### 1\. Clone the Repository
 
 ```bash
-git clone [https://github.com/agamyaaa14/StudySqueeze.git](https://github.com/agamyaaa14/StudySqueeze.git)
+git clone https://github.com/agamyaaa14/StudySqueeze.git
 cd StudySqueeze
 ```
 
@@ -116,7 +119,7 @@ You need to run both the backend and frontend servers in two separate terminals.
     uvicorn main:app --reload
     ```
 
-    The backend will be running at `http://12.0.0.1:8000`.
+    The backend will be running at `http://127.0.0.1:8000`.
 
   - **Terminal 2: Start the Frontend (Vite)**
 
